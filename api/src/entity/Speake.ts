@@ -1,13 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-export enum UserRole {
-  ADMIN = 'admin',
-  EDITOR = 'editor',
-  VIEWER = 'viewer'
-}
-
 @Entity()
-export class User {
+export class Speaker {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,13 +14,6 @@ export class User {
   @Column()
   email: string;
 
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.VIEWER
-  })
-  role: UserRole;
-
   @Column('text')
   bio: string;
 
@@ -38,4 +25,8 @@ export class User {
 
   @Column()
   website: string;
+
+  @Column('simple-array')
+  extraLinks: string[];
+  // events: [Event] @relation(name: "EventsForSpeaker")
 }
