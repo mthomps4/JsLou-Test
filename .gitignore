@@ -1,7 +1,0 @@
-.idea/
-.vscode/
-api/node_modules/
-api/build/
-api/tmp/
-api/temp/
-api/.env
