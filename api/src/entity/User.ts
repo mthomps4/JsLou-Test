@@ -29,10 +29,13 @@ export class User {
 
   @Column('text')
   bio: string;
+
   @Column()
   github: string;
+
   @Column()
   twitter: string;
+
   @Column()
   website: string;
 }
@@ -41,22 +44,28 @@ export class User {
 export class Speaker {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column({ length: 25 })
   firstName: string;
 
   @Column({ length: 25 })
   lastName: string;
+
   @Column()
   email: string;
 
   @Column('text')
   bio: string;
+
   @Column()
   github: string;
+
   @Column()
   twitter: string;
+
   @Column()
   website: string;
+
   @Column('simple-array')
   extraLinks: string[];
   // events: [Event] @relation(name: "EventsForSpeaker")
@@ -66,6 +75,7 @@ export class Speaker {
 export class Event {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   name: string;
 
@@ -83,6 +93,7 @@ export class Event {
 export class Project {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   name: string;
 

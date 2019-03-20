@@ -6,14 +6,19 @@ import { User } from './entity/User';
 createConnection(options)
   .then(async connection => {
     console.log('Inserting a new user into the database...');
+
     const user = new User();
     user.firstName = 'Matt';
     user.lastName = 'Thompson';
-    await connection.manager.save(user);
-    console.log('Saved a new user with id: ' + user.id);
+
+    await connection.manager
+      .save(user)
+      .then(() => console.log('Saved a new user with id: ' + user.id))
+      .catch(e => console.error(e));
 
     console.log('Loading users from the database...');
     const users = await connection.manager.find(User);
+
     console.log('Loaded users: ', users);
 
     console.log('Here you can setup and run express/koa/any other framework.');
