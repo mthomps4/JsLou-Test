@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { options } from '../ormconfig.js';
+// import { options } from '../ormconfig.js';
 import { User } from './entity/User';
 
-createConnection(options)
+createConnection()
   .then(async connection => {
     console.log('Inserting a new user into the database...');
 

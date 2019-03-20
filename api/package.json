@@ -16,7 +16,6 @@
    "scripts": {
       "start": "ts-node src/index.ts",
       "gen:migration": "yarn typeorm migration:generate -n",
-      "typeorm": "TYPEORM_ENTITIES=entities/*.ts TYPEORM_MIGRATIONS=migrations/*.ts TYPEORM_MIGRATIONS_DIR=migrations ts-node ./node_modules/typeorm/cli.js"
-
+      "typeorm": "ts-node ./node_modules/.bin/typeorm "
    }
 }
