@@ -1,0 +1,19 @@
+{
+   "name": "api",
+   "version": "0.0.1",
+   "description": "Louisville Kentucky's JavaScript Group (API)",
+   "author": "Matt Thompson <matthew.thompson.a@gmail.com> & Shannon Beach <shannonbeach1982@gmail.com>",
+   "devDependencies": {
+      "ts-node": "8.0.3",
+      "@types/node": "^11.11.4",
+      "typescript": "3.3.4000"
+   },
+   "dependencies": {
+      "typeorm": "0.2.15",
+      "reflect-metadata": "^0.1.13",
+      "pg": "^7.9.0"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts"
+   }
+}
