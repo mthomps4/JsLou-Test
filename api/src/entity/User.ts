@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import ProfileDetails from './ProfileDetails';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -7,19 +8,7 @@ export enum UserRole {
 }
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ length: 25 })
-  firstName: string;
-
-  @Column({ length: 25 })
-  lastName: string;
-
-  @Column()
-  email: string;
-
+export class User extends ProfileDetails {
   @Column({
     type: 'enum',
     enum: UserRole,
@@ -27,15 +16,9 @@ export class User {
   })
   role: UserRole;
 
-  @Column('text')
-  bio: string;
+  @CreateDateColumn()
+  public createdAt!: Date;
 
-  @Column()
-  github: string;
-
-  @Column()
-  twitter: string;
-
-  @Column()
-  website: string;
+  @UpdateDateColumn()
+  public updatedAt!: Date;
 }

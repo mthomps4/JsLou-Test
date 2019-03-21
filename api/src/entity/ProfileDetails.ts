@@ -1,7 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Speaker {
+export default class ProfileDetails {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,6 +11,7 @@ export class Speaker {
   @Column({ length: 25 })
   lastName: string;
 
+  @Index({ unique: true })
   @Column()
   email: string;
 
@@ -28,5 +29,4 @@ export class Speaker {
 
   @Column('simple-array')
   extraLinks: string[];
-  // events: [Event] @relation(name: "EventsForSpeaker")
 }

@@ -1,12 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import Speaker from './Speaker';
 
 @Entity()
-export class Event {
+export default class Event {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
+
+  @ManyToOne(type => Speaker, speaker => speaker.events)
+  speaker: Speaker;
+
+  @CreateDateColumn()
+  public createdAt!: Date;
+
+  @UpdateDateColumn()
+  public updatedAt!: Date;
 
   // datetime: DateTime!
   // location: String! @default (value: "TEKsystems - 700 Room - First Floor")
