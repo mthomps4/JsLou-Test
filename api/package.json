@@ -2,7 +2,7 @@
    "name": "api",
    "version": "0.0.1",
    "description": "Louisville Kentucky's JavaScript Group (API)",
-   "author": "Matt Thompson <matthew.thompson.a@gmail.com> & Shannon Beach <shannonbeach1982@gmail.com>",
+   "author": "Matt Thompson <matthew.thompson.a@gmail.com>",
    "devDependencies": {
       "ts-node": "8.0.3",
       "@types/node": "^11.11.4",

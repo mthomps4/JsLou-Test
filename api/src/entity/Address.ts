@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Event from './Event';
 
 @Entity()
@@ -6,6 +6,7 @@ export default class Address {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Index({ unique: true })
   @Column()
   line1: string;
 

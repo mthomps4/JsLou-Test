@@ -26,8 +26,8 @@ export default class Event {
   @OneToMany(type => Project, project => project.events)
   project: Project;
 
-  // @Column()
-  // datetime: DateTime;
+  @Column('timestamp')
+  datetime: string;
 
   @OneToMany(type => Address, address => address.events)
   location: Address;

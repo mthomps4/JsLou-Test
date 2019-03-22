@@ -2,6 +2,10 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 import Event from './Event';
 import ProfileDetails from './ProfileDetails';
 
+// Admin - Can add other admins (owner)
+// Editor - Can add/update events and speakers
+// Viewer - Not one of the others -- default until changed by Admin
+
 export enum UserRole {
   ADMIN = 'admin',
   EDITOR = 'editor',
