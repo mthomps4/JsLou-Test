@@ -1,26 +1,16 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
+import Address from './Address';
+import Project from './Project';
 import Speaker from './Speaker';
-
-@Entity()
-export class Address {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  line1: string;
-
-  @Column()
-  line2: string;
-
-  @Column()
-  city: string;
-
-  @Column({ length: 2 })
-  state: string;
-
-  @Column({ type: 'int' })
-  zip: number;
-}
+import User from './User';
 
 @Entity()
 export default class Event {
@@ -33,24 +23,27 @@ export default class Event {
   @ManyToOne(type => Speaker, speaker => speaker.events)
   speaker: Speaker;
 
+  @OneToMany(type => Project, project => project.events)
+  project: Project;
+
   // @Column()
   // datetime: DateTime;
 
-  @Column(type => Address)
+  @OneToMany(type => Address, address => address.events)
   location: Address;
+
+  @Column()
+  meetupUrl: string;
+
+  @Column('simple-array')
+  extraLinks: string[];
+
+  @OneToMany(type => User, user => user.events)
+  organizer: User;
 
   @CreateDateColumn()
   public createdAt!: Date;
 
   @UpdateDateColumn()
   public updatedAt!: Date;
-
-  // datetime: DateTime!
-  // location: String! @default (value: "TEKsystems - 700 Room - First Floor")
-  //   address: String! @default (value: "700 N Hurstbourne Pkwy Suite 250, Louisville, KY 40222")
-  //   meetupUrl: String
-  // extraLinks: [String]
-  // organizer: User!
-  // project: Project @relation(name: "ProjectForEvent")
-  // speaker: Speaker @relation(name: "EventsForSpeaker")
 }

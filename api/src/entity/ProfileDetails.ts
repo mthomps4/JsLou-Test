@@ -1,10 +1,6 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Index } from 'typeorm';
 
-@Entity()
-export default class ProfileDetails {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export default abstract class ProfileDetails {
   @Column({ length: 25 })
   firstName: string;
 

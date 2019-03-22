@@ -4,12 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 import Event from './Event';
 import Speaker from './Speaker';
+
 @Entity()
 export default class Project {
   @PrimaryGeneratedColumn()
@@ -24,13 +24,13 @@ export default class Project {
   @Column('simple-array')
   repos: string[];
 
-  @OneToOne(type => Event)
-  @JoinColumn()
-  event: Event;
-
   @ManyToOne(type => Speaker, speaker => speaker.projects)
   @JoinColumn()
   contacts: Speaker[];
+
+  @ManyToOne(type => Event, event => event.project)
+  @JoinColumn()
+  events: Event[];
 
   @CreateDateColumn()
   public createdAt!: Date;
