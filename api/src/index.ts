@@ -1,26 +1,13 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-// import { options } from '../ormconfig.js';
-import { User } from './entity/User';
+import { server } from './initializers/apollo';
 
 createConnection()
   .then(async connection => {
-    console.log('Inserting a new user into the database...');
+    console.log('Starting Server...');
 
-    const user = new User();
-    user.firstName = 'Matt';
-    user.lastName = 'Thompson';
-
-    await connection.manager
-      .save(user)
-      .then(() => console.log('Saved a new user with id: ' + user.id))
-      .catch(e => console.error(e));
-
-    console.log('Loading users from the database...');
-    const users = await connection.manager.find(User);
-
-    console.log('Loaded users: ', users);
-
-    console.log('Here you can setup and run express/koa/any other framework.');
+    server.listen().then(({ url }: any) => {
+      console.log(`🚀 Server ready at ${url}`);
+    });
   })
   .catch(error => console.log(error));
