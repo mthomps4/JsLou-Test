@@ -2,6 +2,27 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 import Speaker from './Speaker';
 
 @Entity()
+export class Address {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  line1: string;
+
+  @Column()
+  line2: string;
+
+  @Column()
+  city: string;
+
+  @Column({ length: 2 })
+  state: string;
+
+  @Column({ type: 'int' })
+  zip: number;
+}
+
+@Entity()
 export default class Event {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,6 +32,12 @@ export default class Event {
 
   @ManyToOne(type => Speaker, speaker => speaker.events)
   speaker: Speaker;
+
+  // @Column()
+  // datetime: DateTime;
+
+  @Column()
+  location: Address;
 
   @CreateDateColumn()
   public createdAt!: Date;
