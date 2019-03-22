@@ -36,7 +36,7 @@ export default class Event {
   // @Column()
   // datetime: DateTime;
 
-  @Column()
+  @Column(type => Address)
   location: Address;
 
   @CreateDateColumn()
