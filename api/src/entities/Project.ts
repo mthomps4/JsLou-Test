@@ -7,13 +7,13 @@ export default class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
+  @Column({ nullable: false })
   description: string;
 
-  @Column('simple-array')
+  @Column({ type: 'varchar[]', nullable: true })
   repos: string[];
 
   @ManyToOne(type => Speaker, speaker => speaker.projects)
@@ -22,9 +22,9 @@ export default class Project {
   @ManyToOne(type => Event, event => event.project)
   events: Event[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ readonly: true })
   public createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ readonly: true })
   public updatedAt!: Date;
 }

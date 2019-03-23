@@ -8,21 +8,21 @@ export default abstract class ProfileDetails {
   lastName: string;
 
   @Index({ unique: true })
-  @Column()
+  @Column({ unique: true })
   email: string;
 
-  @Column('text')
+  @Column({ type: 'text', nullable: true })
   bio: string;
 
-  @Column()
+  @Column({ nullable: true })
   github: string;
 
-  @Column()
+  @Column({ nullable: true })
   twitter: string;
 
-  @Column()
+  @Column({ nullable: true })
   website: string;
 
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   extraLinks: string[];
 }

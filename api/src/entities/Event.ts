@@ -17,7 +17,7 @@ export default class Event {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @ManyToOne(type => Speaker, speaker => speaker.events)
@@ -26,24 +26,24 @@ export default class Event {
   @OneToMany(type => Project, project => project.events)
   project: Project;
 
-  @Column('timestamp')
+  @Column('timestamp', { nullable: false })
   datetime: string;
 
   @OneToMany(type => Address, address => address.events)
   location: Address;
 
-  @Column()
+  @Column({ nullable: true })
   meetupUrl: string;
 
-  @Column('simple-array')
+  @Column('simple-array', { nullable: true })
   extraLinks: string[];
 
   @OneToMany(type => User, user => user.events)
   organizer: User;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ readonly: true })
   public createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ readonly: true })
   public updatedAt!: Date;
 }

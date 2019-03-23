@@ -14,9 +14,9 @@ export default class Speaker extends ProfileDetails {
   @OneToMany(type => Project, project => project.contacts)
   projects: Project[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ readonly: true })
   public createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ readonly: true })
   public updatedAt!: Date;
 }

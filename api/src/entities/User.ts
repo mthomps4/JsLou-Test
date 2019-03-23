@@ -27,9 +27,9 @@ export default class User extends ProfileDetails {
   @ManyToOne(type => Event, event => event.organizer)
   events: Event[];
 
-  @CreateDateColumn()
+  @CreateDateColumn({ readonly: true })
   public createdAt!: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ readonly: true })
   public updatedAt!: Date;
 }
