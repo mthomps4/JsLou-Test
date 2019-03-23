@@ -13,7 +13,7 @@ export default class Project {
   @Column({ nullable: false })
   description: string;
 
-  @Column({ type: 'varchar[]', nullable: true })
+  @Column({ type: 'simple-array', nullable: true })
   repos: string[];
 
   @ManyToOne(type => Speaker, speaker => speaker.projects)
