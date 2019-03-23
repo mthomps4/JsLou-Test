@@ -1,5 +1,5 @@
 import { ApolloServer } from 'apollo-server';
-import { schema } from '../graphql/schema';
+import { schema } from './graphql/schema';
 // import { getCustomRepository } from 'typeorm';
 // import { UserRepository } from '../repositories/UserRepository';
 // import { Context } from 'apollo-server-core';

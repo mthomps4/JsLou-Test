@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { server } from './initializers/apollo';
+import { server } from './apollo';
 
 createConnection()
   .then(async connection => {

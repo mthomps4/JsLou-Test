@@ -8,12 +8,12 @@ module.exports = {
   database: process.env.TYPEORM_DATABASE,
   synchronize: false,
   logging: false,
-  entities: ['src/entity/**/*.ts'],
+  entities: ['src/entities/**/*.ts'],
   migrations: ['src/migration/**/*.ts'],
   migrationsTableName: 'typeorm_migrations',
   subscribers: ['src/subscriber/**/*.ts'],
   cli: {
-    entitiesDir: 'src/entity',
+    entitiesDir: 'src/entities',
     migrationsDir: 'src/migration',
     subscribersDir: 'src/subscriber'
   }
