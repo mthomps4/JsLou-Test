@@ -4,7 +4,10 @@ import User from '../../entities/User';
 
 const Account = {
   async getUsers() {
-    await getManager().find(User);
+    const Repo = await getManager();
+    console.log(Repo);
+    const users = await Repo.find(User);
+    return users;
   }
 };
 
