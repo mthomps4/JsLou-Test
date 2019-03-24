@@ -18,6 +18,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    role: String
     bio: String
     github: String
     twitter: String

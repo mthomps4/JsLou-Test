@@ -16,9 +16,16 @@ const Account = {
     if (existingUser.length > 0) {
       throw new Error('Email already exists');
     }
-
-    const user = await userRepo.create(args);
-    return user;
+    try {
+      const user = await userRepo.create(args);
+      // Potential to check the Model before insert
+      const inserted = await userRepo.insert(user);
+      console.info('Inserted User', inserted.identifiers);
+      return user;
+    } catch (e) {
+      console.error('Error on user signup', e);
+      return e;
+    }
   },
   async updateUser(id, input) {
     const userRepo = getRepository(User);
