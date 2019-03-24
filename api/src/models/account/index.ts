@@ -1,8 +1,9 @@
 import { getRepository } from 'typeorm';
 import User from '../../entities/User';
 
+// TOOD: Needs Auth and Can Edit Directives
+
 const Account = {
-  // Queries
   async getUsers() {
     const userRepo = getRepository(User);
     const users = await userRepo.find();
