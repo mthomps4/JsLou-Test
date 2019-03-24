@@ -22,7 +22,7 @@ const typeDefs = gql`
     github: String
     twitter: String
     website: String
-    extraLinks: String[]
+    extraLinks: [String]
     # events: Event[]
   }
 
@@ -34,7 +34,7 @@ const typeDefs = gql`
     github: String
     twitter: String
     website: String
-    extraLinks: String[]
+    extraLinks: [String]
   }
 
   input UpdateUserInput {
@@ -44,7 +44,7 @@ const typeDefs = gql`
     github: String
     twitter: String
     website: String
-    extraLinks: String[]
+    extraLinks: [String]
   }
 `;
 

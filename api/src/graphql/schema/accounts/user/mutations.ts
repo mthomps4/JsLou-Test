@@ -1,7 +1,7 @@
 import Account from '../../../../models/account';
 
 const userMutations = {
-  async createUser(_parent, args, _context) {
+  async signup(_parent, args, _context) {
     // TOOD IS ADMIN - CAN CREATE DIRECTIVE
     Account.signup(args);
   },
