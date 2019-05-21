@@ -20,12 +20,13 @@ import { schema } from './graphql/schema';
 //   return { ...ctx, currentUser };
 // };
 
-export const server = new ApolloServer({
-  schema: schema,
-  introspection: true,
-  playground: true
-  // context
-});
+export const server = () =>
+  new ApolloServer({
+    schema: schema,
+    introspection: true,
+    playground: true
+    // context
+  });
 
 // interface ApolloContext extends Context {
 //   currentUser: User | undefined;

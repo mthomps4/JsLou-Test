@@ -6,8 +6,10 @@ createConnection()
   .then(async connection => {
     console.log('Starting Server...');
 
-    server.listen().then(({ url }: any) => {
-      console.log(`🚀 Server ready at ${url}`);
-    });
+    server()
+      .listen()
+      .then(({ url }: any) => {
+        console.log(`🚀 Server ready at ${url}`);
+      });
   })
   .catch(error => console.log(error));

@@ -1,12 +1,20 @@
-import Account from '../../../../models/account';
+import { getConnection } from 'typeorm';
+import User from '../../../../entities/User';
 
 const userQueries = {
   Query: {
     user: async () => {
-      return { name: 'Matt' };
+      const userRepo = await getConnection().getRepository(User);
+      return userRepo.findOne({
+        where: {
+          firstName: 'Matt'
+        }
+      });
     },
     users: async () => {
-      return Account.getUsers();
+      const userRepo = await getConnection().getRepository(User);
+
+      return userRepo.find();
     }
   }
 };
