@@ -1,10 +1,10 @@
-import { getConnection } from 'typeorm';
-import User from '../../../../entities/User';
+import { getCustomRepository } from 'typeorm';
+import UserRepository from '../../../repositories/User';
 
 const userQueries = {
   Query: {
     user: async () => {
-      const userRepo = await getConnection().getRepository(User);
+      const userRepo = await getCustomRepository(UserRepository);
       return userRepo.findOne({
         where: {
           firstName: 'Matt'
@@ -12,8 +12,7 @@ const userQueries = {
       });
     },
     users: async () => {
-      const userRepo = await getConnection().getRepository(User);
-
+      const userRepo = await getCustomRepository(UserRepository);
       return userRepo.find();
     }
   }

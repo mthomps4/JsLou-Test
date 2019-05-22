@@ -1,5 +1,5 @@
 // import { gql } from 'apollo-server';
-import user from './accounts/user';
+import user from './user';
 
 const typeDefs = [user.typeDefs];
 

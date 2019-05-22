@@ -1,13 +1,14 @@
-import { getConnection } from 'typeorm';
-import User from '../../../../entities/User';
+import { getCustomRepository } from 'typeorm';
+import User from '../../../entities/User';
+import UserRepository from '../../../repositories/User';
 
 const userMutations = {
   Mutation: {
     async signup(_parent, { input: args }, _context) {
       // TOOD IS ADMIN - CAN CREATE DIRECTIVE
-      const userRepo = await getConnection().getRepository(User);
+      const userRepository = getCustomRepository(UserRepository);
       const user = Object.assign(new User(), args);
-      return userRepo.save(user);
+      return userRepository.save(user);
     },
     async updateUser(_parent, args, context) {},
     async deleteUser(_parent, args, context) {}

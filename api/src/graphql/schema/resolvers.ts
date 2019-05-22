@@ -1,4 +1,4 @@
-import user from './accounts/user';
+import user from './user';
 
 const resolvers = {
   ...user.resolvers
