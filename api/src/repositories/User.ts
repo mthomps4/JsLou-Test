@@ -8,5 +8,9 @@ export default class UserRepository extends Repository<User> {
       .where('user.firstName = :firstName', { firstName })
       .andWhere('user.lastName = :lastName', { lastName })
       .getMany();
+  },
+
+  hasRole(role: string) {
+    // TODO
   }
 }

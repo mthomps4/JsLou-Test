@@ -1,5 +1,6 @@
 import { SchemaDirectiveVisitor } from 'apollo-server';
 import { defaultFieldResolver } from 'graphql';
+import { getUserFromToken, hasRole } from '../schema/user/helpers';
 
 export class HasRole extends SchemaDirectiveVisitor {
   visitObject(type) {
@@ -34,10 +35,8 @@ export class HasRole extends SchemaDirectiveVisitor {
         }
 
         const context = args[2];
-
-        // TODO: Helper to getUser from Token
-        const user = await getUser(context.headers.authToken);
-        if (!user.hasRole(requiredRole)) {
+        const user = await getUserFromToken(context.headers.authToken);
+        if (!hasRole(user, requiredRole)) {
           throw new Error('not authorized');
         }
 
