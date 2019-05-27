@@ -1,7 +1,7 @@
 import { AuthenticationError, SchemaDirectiveVisitor } from 'apollo-server';
 import { defaultFieldResolver, GraphQLField } from 'graphql';
 
-export class IsAuthenticated extends SchemaDirectiveVisitor {
+export class IsAuthenticatedDirective extends SchemaDirectiveVisitor {
   public visitFieldDefinition(field: GraphQLField): void {
     const { resolve = defaultFieldResolver } = field;
     field.resolve = async function(...args) {

@@ -1,8 +1,9 @@
-import { SchemaDirectiveVisitor } from 'apollo-server';
+import { AuthenticationError, SchemaDirectiveVisitor } from 'apollo-server';
 import { defaultFieldResolver } from 'graphql';
-import { getUserFromToken, hasRole } from '../schema/user/helpers';
+import { getCustomRepository } from 'typeorm';
+import UserRepository from '../../repositories/User';
 
-export class HasRole extends SchemaDirectiveVisitor {
+export class HasRoleDirective extends SchemaDirectiveVisitor {
   visitObject(type) {
     this.ensureFieldsWrapped(type);
     type._requiredAuthRole = this.args.requires;
@@ -35,9 +36,15 @@ export class HasRole extends SchemaDirectiveVisitor {
         }
 
         const context = args[2];
-        const user = await getUserFromToken(context.headers.authToken);
-        if (!hasRole(user, requiredRole)) {
-          throw new Error('not authorized');
+        const userRepository = getCustomRepository(UserRepository);
+        const token = context.headers && context.headers.authToken;
+        if (!token) {
+          throw new AuthenticationError('not authorized');
+        }
+
+        const user = await userRepository.getUserFromToken(token);
+        if (!userRepository.hasRole(user, requiredRole)) {
+          throw new AuthenticationError('not authorized');
         }
 
         return resolve.apply(this, args);

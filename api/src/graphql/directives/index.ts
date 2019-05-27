@@ -1,10 +1,8 @@
 import { gql } from 'apollo-server';
 
 const directives = gql`
-  directive @isAuthenticated on FIELD
-  directive @isAdmin(role: String) on FIELD
-
-  directive @auth(requires: Role = ADMIN) on OBJECT | FIELD_DEFINITION
+  directive @isAuthenticated on FIELD_DEFINITION
+  directive @hasRole(requires: Role = ADMIN) on OBJECT | FIELD_DEFINITION
 
   enum Role {
     ADMIN

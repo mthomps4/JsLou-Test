@@ -8,9 +8,15 @@ export default class UserRepository extends Repository<User> {
       .where('user.firstName = :firstName', { firstName })
       .andWhere('user.lastName = :lastName', { lastName })
       .getMany();
-  },
+  }
 
-  hasRole(role: string) {
-    // TODO
+  getUserFromToken(token: string) {
+    return this.createQueryBuilder('user')
+      .where('user.token = :token', { token })
+      .getOne();
+  }
+
+  hasRole(user: any, role: string) {
+    return !!(user.role && user.role === role);
   }
 }
