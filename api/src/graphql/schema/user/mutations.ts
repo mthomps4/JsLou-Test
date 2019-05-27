@@ -5,7 +5,6 @@ import UserRepository from '../../../repositories/User';
 const userMutations = {
   Mutation: {
     async signup(_parent, { input: args }, _context) {
-      // TOOD IS ADMIN - CAN CREATE DIRECTIVE
       const userRepository = getCustomRepository(UserRepository);
       const user = Object.assign(new User(), args);
       return userRepository.save(user);
