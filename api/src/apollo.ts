@@ -3,10 +3,10 @@ import { Context } from 'apollo-server-core';
 import { Request } from 'express';
 import { createConnection, getCustomRepository } from 'typeorm';
 import config from './config';
-import User from './entities/User';
+import User from './database/entities/User';
+import UserRepository from './database/repositories/User';
 import resolvers from './graphql/resolvers';
 import typeDefs from './graphql/typeDefs';
-import UserRepository from './repositories/User';
 
 export interface ApolloContext extends Context {
   currentUser: User | undefined;
