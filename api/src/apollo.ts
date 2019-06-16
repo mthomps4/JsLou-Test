@@ -1,36 +1,48 @@
 import { ApolloServer } from 'apollo-server';
 import { Context } from 'apollo-server-core';
 import { Request } from 'express';
-import { getCustomRepository } from 'typeorm';
+import { createConnection, getCustomRepository } from 'typeorm';
+import config from './config';
 import User from './entities/User';
-import { schema } from './graphql/schema';
+import resolvers from './graphql/schema/resolvers';
+import typeDefs from './graphql/schema/typeDefs';
 import UserRepository from './repositories/User';
 
-const context = async (ctx: Context<{ req: Request }>): Promise<ApolloContext> => {
-  const repo = getCustomRepository(UserRepository);
-  const authHeader = ctx.req.get('Authorization');
-  let currentUser: User | undefined;
+export interface ApolloContext extends Context {
+  currentUser: User | undefined;
+  repo: Object;
+}
+const createContext = async (ctx: Context<{ req: Request }>): Promise<ApolloContext> => {
+  const repo = {
+    UserRepository
+  };
 
-  if (authHeader) {
-    currentUser = await repo.getUserFromToken(authHeader);
-  }
+  const token = ctx.req.get('Authorization') || '';
+  if (!token) return { currentUser: null, repo };
 
-  /**
-   * Ignore the the return value type here so TS doesn't force us to always check for currentUser
-   * in our resolvers. That check will be taken care of in the requireAuth directive resolver.
-   */
-  // @ts-ignore
-  return { ...ctx, currentUser };
+  const userRepo = await getCustomRepository(UserRepository);
+  const currentUser = await userRepo.getUserFromToken(token);
+
+  return { currentUser, repo };
 };
 
-export const server = () =>
-  new ApolloServer({
-    schema: schema,
-    introspection: true,
-    playground: true,
-    context
+export const start = async () => {
+  const server = new ApolloServer({
+    playground: config.isDev,
+    introspection: config.isDev,
+    typeDefs,
+    resolvers,
+    context: req => createContext(req)
   });
 
-export interface ApolloContext extends Context {
-  currentUser: User;
-}
+  // Connect to the DB
+  createConnection()
+    .then(async _connection => {
+      console.log('Connected to DB');
+      return server
+        .listen({ port: config.port })
+        .then(({ url }) => console.log(`Server ready at ${url}`))
+        .catch(e => console.log('Unable to start server', e));
+    })
+    .catch(error => console.log('Error Connecting to DB', error));
+};

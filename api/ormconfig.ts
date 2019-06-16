@@ -1,11 +1,13 @@
+import config from './src/config';
+
 module.exports = {
   name: 'default',
-  type: process.env.TYPEORM_TYPE,
-  host: process.env.TYPEORM_HOST,
-  port: process.env.TYPEORM_PORT,
-  username: process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
-  database: process.env.TYPEORM_DATABASE,
+  type: config.TYPEORM_TYPE,
+  host: config.TYPEORM_HOST,
+  port: config.TYPEORM_PORT,
+  username: config.TYPEORM_USERNAME,
+  password: config.TYPEORM_PASSWORD,
+  database: config.TYPEORM_DATABASE,
   synchronize: false,
   logging: false,
   entities: ['src/entities/**/*.ts'],

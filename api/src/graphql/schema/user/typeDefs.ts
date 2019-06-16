@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
-  type Query {
+  extend type Query {
     user: User @isAuthenticated
     users: [User] @isAuthenticated
   }
 
-  type Mutation {
+  extend type Mutation {
     # login: AuthedUser
     signup(input: CreateUserInput!): User @hasRole @isAuthenticated
     updateUser(id: ID!, input: UpdateUserInput!): User @hasRole @isAuthenticated
