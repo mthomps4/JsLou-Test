@@ -1,4 +1,4 @@
-import user from './user';
+import user from './schema/user';
 
 const resolvers = {
   ...user.resolvers

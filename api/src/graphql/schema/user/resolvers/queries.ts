@@ -1,5 +1,5 @@
 import { getCustomRepository } from 'typeorm';
-import UserRepository from '../../../repositories/User';
+import UserRepository from '../../../../repositories/User';
 
 const userQueries = {
   Query: {

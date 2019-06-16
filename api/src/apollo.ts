@@ -4,8 +4,8 @@ import { Request } from 'express';
 import { createConnection, getCustomRepository } from 'typeorm';
 import config from './config';
 import User from './entities/User';
-import resolvers from './graphql/schema/resolvers';
-import typeDefs from './graphql/schema/typeDefs';
+import resolvers from './graphql/resolvers';
+import typeDefs from './graphql/typeDefs';
 import UserRepository from './repositories/User';
 
 export interface ApolloContext extends Context {

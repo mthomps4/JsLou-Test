@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
-import User from '../../../entities/User';
-import UserRepository from '../../../repositories/User';
+import User from '../../../../entities/User';
+import UserRepository from '../../../../repositories/User';
 
 const userMutations = {
   Mutation: {

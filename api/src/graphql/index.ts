@@ -1,6 +1,6 @@
 import { makeExecutableSchema } from 'apollo-server';
-import { HasRoleDirective } from '../directives/hasRole';
-import { IsAuthenticatedDirective } from '../directives/isAuthenticated';
+import { HasRoleDirective } from './directives/hasRole';
+import { IsAuthenticatedDirective } from './directives/isAuthenticated';
 import resolvers from './resolvers';
 import typeDefs from './typeDefs';
 

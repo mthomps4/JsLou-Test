@@ -1,7 +1,7 @@
 // import { gql } from 'apollo-server';
 import { gql } from 'apollo-server';
-import directives from '../directives';
-import user from './user';
+import directives from './directives';
+import user from './schema/user';
 
 // This is just to make extending possible so we can co-locate queries.
 // If we have global queries/mutations they can go here.
