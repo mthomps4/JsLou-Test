@@ -1,6 +1,5 @@
 export const config = {
   // dbUrl: '' -- Handled in ormconfig
-  // Reconfig for TEST DB
   TYPEORM_TYPE: process.env.DB_TYPE,
   TYPEORM_HOST: process.env.DB_HOST,
   TYPEORM_PORT: process.env.DB_PORT,

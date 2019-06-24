@@ -1,4 +1,3 @@
-// import { gql } from 'apollo-server';
 import { gql } from 'apollo-server';
 import directives from './directives';
 import user from './schema/user';

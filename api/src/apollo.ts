@@ -10,19 +10,21 @@ import typeDefs from './graphql/typeDefs';
 
 export interface ApolloContext extends Context {
   currentUser: User | undefined;
-  repo: Object;
+  repo: object;
 }
-const createContext = async (ctx: Context<{ req: Request }>): Promise<ApolloContext> => {
-  const repo = {
-    UserRepository
-  };
 
+const buildRepos = async () => {
+  const userRepo = await getCustomRepository(UserRepository);
+
+  return {
+    userRepo
+  };
+};
+const createContext = async (ctx: Context<{ req: Request }>): Promise<ApolloContext> => {
+  let repo = await buildRepos();
   const token = ctx.req.get('Authorization') || '';
   if (!token) return { currentUser: null, repo };
-
-  const userRepo = await getCustomRepository(UserRepository);
-  const currentUser = await userRepo.getUserFromToken(token);
-
+  const currentUser = await repo.userRepo.getUserFromToken(token);
   return { currentUser, repo };
 };
 
@@ -35,10 +37,9 @@ export const start = async () => {
     context: req => createContext(req)
   });
 
-  // Connect to the DB
+  // Connect to the DB Then start Apollo
   createConnection()
     .then(async _connection => {
-      console.log('Connected to DB');
       return server
         .listen({ port: config.port })
         .then(({ url }) => console.log(`Server ready at ${url}`))
