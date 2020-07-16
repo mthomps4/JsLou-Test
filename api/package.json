@@ -12,7 +12,7 @@
       "@graphql-modules/core": "^0.7.3",
       "apollo-server": "^2.4.8",
       "graphql": "^14.3.0",
-      "lodash": "^4.17.11",
+      "lodash": "^4.17.19",
       "pg": "^7.9.0",
       "reflect-metadata": "^0.1.13",
       "typeorm": "0.2.15"
